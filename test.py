@@ -4,7 +4,7 @@ import http.server
 from prometheus_client import start_http_server
 from prometheus_client import Counter
 from prometheus_client import Gauge
-from prometheus_client import Summary
+from prometheus_client import Histogram
 
 REQUESTS = Counter('hello_worlds_total',
                    'Hello Worlds requested.')
@@ -20,8 +20,9 @@ TIME = Gauge('time_seconds', 'The current time.')
 #  specify a function to be called at exposition time
 TIME.set_function(lambda: time.time())
 
-LATENCY = Summary('hello_world_latency_seconds',
-                  'Time for a request Hello World.')
+LATENCY = Histogram('hello_world_latency_seconds',
+                    'Time for a request Hello World.', 
+                    buckets=[0.0001, 0.0002, 0.0005, 0.001, 0.01, 0.1])
 
 
 class MyHandler(http.server.BaseHTTPRequestHandler):
