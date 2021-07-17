@@ -44,3 +44,5 @@ http_requests_total{path="/view"}
 ```
 
 Labels come from two sources, instrumentation labels and target labels. When you are working in PromQL there is no difference between the two, but it’s important to dis‐ tinguish between them in order to get the most benefits from labels.
+
+
